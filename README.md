@@ -1,7 +1,6 @@
 # selenium-tests
 ## Steps for building the project
-This projects uses venv, so it does have all the files for configuration
-If you do not use, you can just install all the dependencies using 
+For installation, you can just install all the dependencies using 
 ```commandline
 pip install -r requirements.txt
 ```
