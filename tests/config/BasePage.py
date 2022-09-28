@@ -1,9 +1,12 @@
+import os
+
 from selenium.common import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from tests.config.driver import timeout
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.select import Select
 
 class BasePage:
 
@@ -12,6 +15,14 @@ class BasePage:
 
     def click(self, by_locator):
         WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(by_locator)).click()
+
+    def select(self, by_locator, value):
+        select_element = self.driver.find_element(*by_locator)
+        select_object = Select(select_element)
+        select_object.select_by_value(value)
+
+    def upload_file(self, by_locator, path):
+        self.driver.find_element(*by_locator).send_keys(os.getcwd() + path)
 
     def click_on_nth_child(self, by_locator, position):
         WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(by_locator)).click()

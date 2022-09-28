@@ -12,6 +12,33 @@ class MyStore(BasePage):
         self.enter_text(MyStoreLocators.search_bar, product)
         self.click(MyStoreLocators.submit_search)
 
+    def navigate_to_contact(self):
+        self.click(MyStoreLocators.contact_header)
+
+    def choose_subject(self, value):
+        self.select(MyStoreLocators.contact_form_id_contact, value)
+
+    def upload_attach_file(self):
+        self.upload_file(MyStoreLocators.contact_form_fileUpload, "/tests/mystore/assets/image.jpeg")
+
+    def send_contact_form(self):
+        self.click(MyStoreLocators.contact_form_send_button)
+
+    def verify_send_successfully(self):
+        return self.return_if_exists(MyStoreLocators.alert_success)
+
+    def verify_not_send(self):
+        return self.return_if_exists(MyStoreLocators.alert_error)
+
+    def fill_email(self, value):
+        self.enter_text(MyStoreLocators.contact_form_email, value)
+
+    def fill_order_reference(self, value):
+        self.enter_text(MyStoreLocators.contact_form_id_order, value)
+
+    def fill_message(self, value):
+        self.enter_text(MyStoreLocators.contact_form_message, value)
+
     def verify_all_products_contain_keyword(self, keyword):
         texts = self.return_elements_text(MyStoreLocators.products_result_search_title)
         for text in texts:

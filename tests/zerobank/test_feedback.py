@@ -10,7 +10,7 @@ class FeedbackTest(TestCase):
         zerobank.send_feedback()
         self.assertFalse(zerobank.verify_feedback_send())
 
-    def test_send_with_wrong_email(self):
+    def test_send_with_invalid_email(self):
         zerobank = ZeroBank(self.driver)
         zerobank.navigate_to_feedback()
         zerobank.type_feedback_name("eric groppe")
